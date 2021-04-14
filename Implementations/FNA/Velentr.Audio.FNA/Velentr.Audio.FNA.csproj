@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Velentr.Input</RootNamespace>
+    <AssemblyName>Velentr.Input.FNA</AssemblyName>
+    <Platforms>AnyCPU;x64</Platforms>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Authors>Christian Webber</Authors>
+    <Company>Christian Webber</Company>
+    <RepositoryUrl>https://github.com/vonderborch/Velentr.Input</RepositoryUrl>
+    <PackageTags>FNA, Input, Keyboard, Mouse, GamePad, Touch, Voice</PackageTags>
+    <Description>A simple and easy-to-use input library for XNA/Monogame/FNA.</Description>
+    <Version>1.2.0</Version>
+    <PackageProjectUrl>https://github.com/vonderborch/Velentr.Input</PackageProjectUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;FNA</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>C:\Users\ricky\OneDrive\Projects\repos\Velentr\Velentr.Input\release\FNA\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DefineConstants>TRACE;FNA</DefineConstants>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Conditions\**" />
+    <Compile Remove="Enums\**" />
+    <Compile Remove="EventArguments\**" />
+    <Compile Remove="GamePad\**" />
+    <Compile Remove="Helpers\**" />
+    <Compile Remove="Keyboard\**" />
+    <Compile Remove="Mouse\**" />
+    <Compile Remove="Touch\**" />
+    <Compile Remove="Voice\**" />
+    <EmbeddedResource Remove="Conditions\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="EventArguments\**" />
+    <EmbeddedResource Remove="GamePad\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="Keyboard\**" />
+    <EmbeddedResource Remove="Mouse\**" />
+    <EmbeddedResource Remove="Touch\**" />
+    <EmbeddedResource Remove="Voice\**" />
+    <None Remove="Conditions\**" />
+    <None Remove="Enums\**" />
+    <None Remove="EventArguments\**" />
+    <None Remove="GamePad\**" />
+    <None Remove="Helpers\**" />
+    <None Remove="Keyboard\**" />
+    <None Remove="Mouse\**" />
+    <None Remove="Touch\**" />
+    <None Remove="Voice\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="fnalibs" Version="21.3.5" />
+    <PackageReference Include="System.Speech" Version="5.0.0" />
+    <PackageReference Include="Velentr.Collections" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FNA\FNA.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

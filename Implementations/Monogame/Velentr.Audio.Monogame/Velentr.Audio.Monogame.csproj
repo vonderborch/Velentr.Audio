@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Velentr.Input.Monogame</AssemblyName>
+    <RootNamespace>Velentr.Input</RootNamespace>
+    <Authors>Christian Webber</Authors>
+    <Company>Christian Webber</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/vonderborch/Velentr.Input</RepositoryUrl>
+    <PackageTags>Monogame, Input, Keyboard, Mouse, GamePad, Touch, Voice</PackageTags>
+    <Description>A simple and easy-to-use input library for XNA/Monogame/FNA.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.2.0</Version>
+    <PackageProjectUrl>https://github.com/vonderborch/Velentr.Input</PackageProjectUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;MONOGAME</DefineConstants>
+    <OutputPath>C:\Users\ricky\OneDrive\Projects\repos\Velentr\Velentr.Input\release\Monogame\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Conditions\**" />
+    <Compile Remove="Enums\**" />
+    <Compile Remove="EventArguments\**" />
+    <Compile Remove="GamePad\**" />
+    <Compile Remove="Helpers\**" />
+    <Compile Remove="Keyboard\**" />
+    <Compile Remove="Mouse\**" />
+    <Compile Remove="Touch\**" />
+    <Compile Remove="Voice\**" />
+    <EmbeddedResource Remove="Conditions\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="EventArguments\**" />
+    <EmbeddedResource Remove="GamePad\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="Keyboard\**" />
+    <EmbeddedResource Remove="Mouse\**" />
+    <EmbeddedResource Remove="Touch\**" />
+    <EmbeddedResource Remove="Voice\**" />
+    <None Remove="Conditions\**" />
+    <None Remove="Enums\**" />
+    <None Remove="EventArguments\**" />
+    <None Remove="GamePad\**" />
+    <None Remove="Helpers\**" />
+    <None Remove="Keyboard\**" />
+    <None Remove="Mouse\**" />
+    <None Remove="Touch\**" />
+    <None Remove="Voice\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Speech" Version="5.0.0" />
+    <PackageReference Include="Velentr.Collections" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
