@@ -24,6 +24,9 @@
     <DefineConstants>TRACE;FNA</DefineConstants>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DefineConstants>TRACE;FNA</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Conditions\**" />
     <Compile Remove="Enums\**" />
