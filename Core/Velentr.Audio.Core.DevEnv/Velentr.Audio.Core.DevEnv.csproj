@@ -31,4 +31,27 @@
   <ItemGroup>
     <ProjectReference Include="..\Velentr.Audio.Core\Velentr.Audio.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\Music\Drums of the Deep - 153 Loop Full.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Lord of the Land - 130 Full.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Master of the Feast - 122 Full.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Suonatore di Liuto - Full.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Teller of the Tales - 130 Full.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Sounds\263133__pan14__tone-beep.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Sounds\27568__suonho__memorymoon-space-blaster-plays.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

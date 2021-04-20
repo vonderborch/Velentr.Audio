@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Velentr.Audio;
 
 namespace Velentr.Input.DevEnv
 {
@@ -7,6 +8,8 @@ namespace Velentr.Input.DevEnv
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private AudioManager manager;
 
 
         public Game1()
@@ -25,7 +28,8 @@ namespace Velentr.Input.DevEnv
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
+            manager = new AudioManager();
+            //manager.AddAudio("Drums", "Content\\", 0f, false, true);
         }
 
         protected override void Update(GameTime gameTime)
