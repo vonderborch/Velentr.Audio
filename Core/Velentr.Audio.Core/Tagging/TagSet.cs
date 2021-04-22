@@ -60,34 +60,6 @@ namespace Velentr.Audio.Tagging
         public int ExclusionTagCount => _exclusions.Count;
 
         /// <summary>
-        ///     Gets the number of required tags.
-        /// </summary>
-        ///
-        /// <value>
-        ///     The number of required tags.
-        /// </value>
-        public int RequiredTagCount => _required.Count;
-
-        /// <summary>
-        ///     Gets the number of tags.
-        /// </summary>
-        ///
-        /// <value>
-        ///     The number of tags.
-        /// </value>
-        public int TagCount => _tags.Count;
-
-        /// <summary>
-        ///     Gets or sets the number of total tags.
-        /// </summary>
-        ///
-        /// <value>
-        ///     The total number of tag count.
-        /// </value>
-        public int TotalTagCount { get; private set; }
-
-
-        /// <summary>
         ///     Gets or sets the exclusion tags.
         /// </summary>
         ///
@@ -103,6 +75,41 @@ namespace Velentr.Audio.Tagging
                 TotalTagCount = _tags.Count + _exclusions.Count + _required.Count;
             }
         }
+
+        /// <summary>
+        ///     Gets the number of required tags.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The number of required tags.
+        /// </value>
+        public int RequiredTagCount => _required.Count;
+
+        /// <summary>
+        ///     Gets or sets the required tags.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The required tags.
+        /// </value>
+        public List<string> RequiredTags
+        {
+            get => _required.ToList();
+            set
+            {
+                _required = new HashSet<string>(value);
+                TotalTagCount = _tags.Count + _exclusions.Count + _required.Count;
+            }
+        }
+
+        /// <summary>
+        ///     Gets the number of tags.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The number of tags.
+        /// </value>
+        public int TagCount => _tags.Count;
 
         /// <summary>
         ///     Gets or sets the tags.
@@ -122,20 +129,38 @@ namespace Velentr.Audio.Tagging
         }
 
         /// <summary>
-        ///     Gets or sets the required tags.
+        ///     Gets or sets the number of total tags.
         /// </summary>
         ///
         /// <value>
-        ///     The required tags.
+        ///     The total number of tag count.
         /// </value>
-        public List<string> RequiredTags
+        public int TotalTagCount { get; private set; }
+
+        /// <summary>
+        ///     Adds an exclusion tag.
+        /// </summary>
+        ///
+        /// <param name="tag"> The tag. </param>
+        public void AddExclusionTag(string tag)
         {
-            get => _required.ToList();
-            set
+            _exclusions.Add(tag);
+            TotalTagCount++;
+        }
+
+        /// <summary>
+        ///     Adds an exclusion tags.
+        /// </summary>
+        ///
+        /// <param name="tags"> The tags. </param>
+        public void AddExclusionTag(List<string> tags)
+        {
+            for (var i = 0; i < tags.Count; i++)
             {
-                _required = new HashSet<string>(value);
-                TotalTagCount = _tags.Count + _exclusions.Count + _required.Count;
+                _exclusions.Add(tags[i]);
             }
+
+            TotalTagCount += tags.Count;
         }
 
         /// <summary>
@@ -159,32 +184,6 @@ namespace Velentr.Audio.Tagging
             for (var i = 0; i < tags.Count; i++)
             {
                 _tags.Add(tags[i]);
-            }
-
-            TotalTagCount += tags.Count;
-        }
-
-        /// <summary>
-        ///     Adds an exclusion tag.
-        /// </summary>
-        ///
-        /// <param name="tag"> The tag. </param>
-        public void AddExclusionTag(string tag)
-        {
-            _exclusions.Add(tag);
-            TotalTagCount++;
-        }
-
-        /// <summary>
-        ///     Adds an exclusion tags.
-        /// </summary>
-        ///
-        /// <param name="tags"> The tags. </param>
-        public void AddExclusionTag(List<string> tags)
-        {
-            for (var i = 0; i < tags.Count; i++)
-            {
-                _exclusions.Add(tags[i]);
             }
 
             TotalTagCount += tags.Count;
@@ -231,12 +230,15 @@ namespace Velentr.Audio.Tagging
                 case TagType.Normal:
                     AddNormalTag(tag);
                     break;
+
                 case TagType.Exclusion:
                     AddExclusionTag(tag);
                     break;
+
                 case TagType.Required:
                     AddRequiredTag(tag);
                     break;
+
                 default:
                     throw new Exception("Unsupported tag type!");
             }
@@ -257,12 +259,15 @@ namespace Velentr.Audio.Tagging
                 case TagType.Normal:
                     AddNormalTag(tags);
                     break;
+
                 case TagType.Exclusion:
                     AddExclusionTag(tags);
                     break;
+
                 case TagType.Required:
                     AddRequiredTag(tags);
                     break;
+
                 default:
                     throw new Exception("Unsupported tag type!");
             }
@@ -284,12 +289,15 @@ namespace Velentr.Audio.Tagging
                     case TagType.Normal:
                         AddNormalTag(tags[i].Item1);
                         break;
+
                     case TagType.Exclusion:
                         AddExclusionTag(tags[i].Item1);
                         break;
+
                     case TagType.Required:
                         AddRequiredTag(tags[i].Item1);
                         break;
+
                     default:
                         throw new Exception("Unsupported tag type!");
                 }
@@ -297,190 +305,49 @@ namespace Velentr.Audio.Tagging
         }
 
         /// <summary>
-        ///     Removes the normal tag described by tags.
+        ///     Gets valid tags.
         /// </summary>
         ///
-        /// <param name="tag"> The tag. </param>
+        /// <param name="currentTags"> The current tags. </param>
         ///
         /// <returns>
-        ///     A List&lt;bool&gt;
+        ///     The valid tags.
         /// </returns>
-        public bool RemoveNormalTag(string tag)
+        public List<Tag> GetValidTags(List<Tag> currentTags)
         {
-            return _tags.Remove(tag);
-        }
-
-        /// <summary>
-        ///     Removes the normal tag described by tags.
-        /// </summary>
-        ///
-        /// <param name="tags"> The tags. </param>
-        ///
-        /// <returns>
-        ///     A List&lt;bool&gt;
-        /// </returns>
-        public List<bool> RemoveNormalTag(List<string> tags)
-        {
-            var output = new List<bool>(tags.Count);
-            for (var i = 0; i < tags.Count; i++)
+            if (TotalTagCount == 0 && currentTags.Count == 0)
             {
-                output.Add(_tags.Remove(tags[i]));
+                return currentTags;
             }
 
-            return output;
-        }
-
-        /// <summary>
-        ///     Removes the required tag described by tags.
-        /// </summary>
-        ///
-        /// <param name="tag"> The tag. </param>
-        ///
-        /// <returns>
-        ///     A List&lt;bool&gt;
-        /// </returns>
-        public bool RemoveRequiredTag(string tag)
-        {
-            return _required.Remove(tag);
-        }
-
-        /// <summary>
-        ///     Removes the required tag described by tags.
-        /// </summary>
-        ///
-        /// <param name="tags"> The tags. </param>
-        ///
-        /// <returns>
-        ///     A List&lt;bool&gt;
-        /// </returns>
-        public List<bool> RemoveRequiredTag(List<string> tags)
-        {
-            var output = new List<bool>(tags.Count);
-            for (var i = 0; i < tags.Count; i++)
+            var valid = new List<Tag>();
+            var requiredTags = 0;
+            var tags = 0;
+            for (var i = 0; i < currentTags.Count; i++)
             {
-                output.Add(_required.Remove(tags[i]));
-            }
-
-            return output;
-        }
-
-        /// <summary>
-        ///     Removes the exclusion tag described by tags.
-        /// </summary>
-        ///
-        /// <param name="tag"> The tag. </param>
-        ///
-        /// <returns>
-        ///     A List&lt;bool&gt;
-        /// </returns>
-        public bool RemoveExclusionTag(string tag)
-        {
-            return _exclusions.Remove(tag);
-        }
-
-        /// <summary>
-        ///     Removes the exclusion tag described by tags.
-        /// </summary>
-        ///
-        /// <param name="tags"> The tags. </param>
-        ///
-        /// <returns>
-        ///     A List&lt;bool&gt;
-        /// </returns>
-        public List<bool> RemoveExclusionTag(List<string> tags)
-        {
-            var output = new List<bool>(tags.Count);
-            for (var i = 0; i < tags.Count; i++)
-            {
-                output.Add(_exclusions.Remove(tags[i]));
-            }
-
-            return output;
-        }
-
-        /// <summary>
-        ///     Removes the tag described by tags.
-        /// </summary>
-        ///
-        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
-        ///
-        /// <param name="tag">     The tag. </param>
-        /// <param name="tagType"> Type of the tag. </param>
-        ///
-        /// <returns>
-        ///     A List&lt;bool&gt;
-        /// </returns>
-        public bool RemoveTag(string tag, TagType tagType)
-        {
-            switch (tagType)
-            {
-                case TagType.Normal:
-                    return RemoveNormalTag(tag);
-                case TagType.Exclusion:
-                    return RemoveExclusionTag(tag);
-                case TagType.Required:
-                    return RemoveRequiredTag(tag);
-                default:
-                    throw new Exception("Unsupported tag type!");
-            }
-        }
-
-        /// <summary>
-        ///     Removes the tag described by tags.
-        /// </summary>
-        ///
-        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
-        ///
-        /// <param name="tags">    The tags. </param>
-        /// <param name="tagType"> Type of the tag. </param>
-        ///
-        /// <returns>
-        ///     A List&lt;bool&gt;
-        /// </returns>
-        public List<bool> RemoveTag(List<string> tags, TagType tagType)
-        {
-            switch (tagType)
-            {
-                case TagType.Normal:
-                    return RemoveNormalTag(tags);
-                case TagType.Exclusion:
-                    return RemoveExclusionTag(tags);
-                case TagType.Required:
-                    return RemoveRequiredTag(tags);
-                default:
-                    throw new Exception("Unsupported tag type!");
-            }
-        }
-
-        /// <summary>
-        ///     Removes the tag described by tags.
-        /// </summary>
-        ///
-        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
-        ///
-        /// <param name="tags"> The tags. </param>
-        public List<bool> RemoveTag(List<(string, TagType)> tags)
-        {
-            var output = new List<bool>(tags.Count);
-            for (var i = 0; i < tags.Count; i++)
-            {
-                switch (tags[i].Item2)
+                // if we run into a tag this piece of music is excluded from being played when it is there, return false
+                if (_exclusions.Contains(currentTags[i].Name))
                 {
-                    case TagType.Normal:
-                        output.Add(RemoveNormalTag(tags[i].Item1));
-                        break;
-                    case TagType.Exclusion:
-                        output.Add(RemoveExclusionTag(tags[i].Item1));
-                        break;
-                    case TagType.Required:
-                        output.Add(RemoveRequiredTag(tags[i].Item1));
-                        break;
-                    default:
-                        throw new Exception("Unsupported tag type!");
+                    return new List<Tag>();
+                }
+
+                if (_required.Contains(currentTags[i].Name))
+                {
+                    requiredTags++;
+                    valid.Add(currentTags[i]);
+                }
+
+                if (_tags.Contains(currentTags[i].Name))
+                {
+                    tags++;
+                    valid.Add(currentTags[i]);
                 }
             }
-
-            return output;
+            return RequiredTagCount > 0 && requiredTags == RequiredTagCount
+                ? valid
+                : tags > 0
+                    ? valid
+                    : new List<Tag>();
         }
 
         /// <summary>
@@ -568,49 +435,199 @@ namespace Velentr.Audio.Tagging
         }
 
         /// <summary>
-        ///     Gets valid tags.
+        ///     Removes the exclusion tag described by tags.
         /// </summary>
         ///
-        /// <param name="currentTags"> The current tags. </param>
+        /// <param name="tag"> The tag. </param>
         ///
         /// <returns>
-        ///     The valid tags.
+        ///     A List&lt;bool&gt;
         /// </returns>
-        public List<Tag> GetValidTags(List<Tag> currentTags)
+        public bool RemoveExclusionTag(string tag)
         {
-            if (TotalTagCount == 0 && currentTags.Count == 0)
+            return _exclusions.Remove(tag);
+        }
+
+        /// <summary>
+        ///     Removes the exclusion tag described by tags.
+        /// </summary>
+        ///
+        /// <param name="tags"> The tags. </param>
+        ///
+        /// <returns>
+        ///     A List&lt;bool&gt;
+        /// </returns>
+        public List<bool> RemoveExclusionTag(List<string> tags)
+        {
+            var output = new List<bool>(tags.Count);
+            for (var i = 0; i < tags.Count; i++)
             {
-                return currentTags;
+                output.Add(_exclusions.Remove(tags[i]));
             }
 
-            var valid = new List<Tag>();
-            var requiredTags = 0;
-            var tags = 0;
-            for (var i = 0; i < currentTags.Count; i++)
+            return output;
+        }
+
+        /// <summary>
+        ///     Removes the normal tag described by tags.
+        /// </summary>
+        ///
+        /// <param name="tag"> The tag. </param>
+        ///
+        /// <returns>
+        ///     A List&lt;bool&gt;
+        /// </returns>
+        public bool RemoveNormalTag(string tag)
+        {
+            return _tags.Remove(tag);
+        }
+
+        /// <summary>
+        ///     Removes the normal tag described by tags.
+        /// </summary>
+        ///
+        /// <param name="tags"> The tags. </param>
+        ///
+        /// <returns>
+        ///     A List&lt;bool&gt;
+        /// </returns>
+        public List<bool> RemoveNormalTag(List<string> tags)
+        {
+            var output = new List<bool>(tags.Count);
+            for (var i = 0; i < tags.Count; i++)
             {
-                // if we run into a tag this piece of music is excluded from being played when it is there, return false
-                if (_exclusions.Contains(currentTags[i].Name))
-                {
-                    return new List<Tag>();
-                }
+                output.Add(_tags.Remove(tags[i]));
+            }
 
-                if (_required.Contains(currentTags[i].Name))
-                {
-                    requiredTags++;
-                    valid.Add(currentTags[i]);
-                }
+            return output;
+        }
 
-                if (_tags.Contains(currentTags[i].Name))
+        /// <summary>
+        ///     Removes the required tag described by tags.
+        /// </summary>
+        ///
+        /// <param name="tag"> The tag. </param>
+        ///
+        /// <returns>
+        ///     A List&lt;bool&gt;
+        /// </returns>
+        public bool RemoveRequiredTag(string tag)
+        {
+            return _required.Remove(tag);
+        }
+
+        /// <summary>
+        ///     Removes the required tag described by tags.
+        /// </summary>
+        ///
+        /// <param name="tags"> The tags. </param>
+        ///
+        /// <returns>
+        ///     A List&lt;bool&gt;
+        /// </returns>
+        public List<bool> RemoveRequiredTag(List<string> tags)
+        {
+            var output = new List<bool>(tags.Count);
+            for (var i = 0; i < tags.Count; i++)
+            {
+                output.Add(_required.Remove(tags[i]));
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        ///     Removes the tag described by tags.
+        /// </summary>
+        ///
+        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
+        ///
+        /// <param name="tag">     The tag. </param>
+        /// <param name="tagType"> Type of the tag. </param>
+        ///
+        /// <returns>
+        ///     A List&lt;bool&gt;
+        /// </returns>
+        public bool RemoveTag(string tag, TagType tagType)
+        {
+            switch (tagType)
+            {
+                case TagType.Normal:
+                    return RemoveNormalTag(tag);
+
+                case TagType.Exclusion:
+                    return RemoveExclusionTag(tag);
+
+                case TagType.Required:
+                    return RemoveRequiredTag(tag);
+
+                default:
+                    throw new Exception("Unsupported tag type!");
+            }
+        }
+
+        /// <summary>
+        ///     Removes the tag described by tags.
+        /// </summary>
+        ///
+        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
+        ///
+        /// <param name="tags">    The tags. </param>
+        /// <param name="tagType"> Type of the tag. </param>
+        ///
+        /// <returns>
+        ///     A List&lt;bool&gt;
+        /// </returns>
+        public List<bool> RemoveTag(List<string> tags, TagType tagType)
+        {
+            switch (tagType)
+            {
+                case TagType.Normal:
+                    return RemoveNormalTag(tags);
+
+                case TagType.Exclusion:
+                    return RemoveExclusionTag(tags);
+
+                case TagType.Required:
+                    return RemoveRequiredTag(tags);
+
+                default:
+                    throw new Exception("Unsupported tag type!");
+            }
+        }
+
+        /// <summary>
+        ///     Removes the tag described by tags.
+        /// </summary>
+        ///
+        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
+        ///
+        /// <param name="tags"> The tags. </param>
+        public List<bool> RemoveTag(List<(string, TagType)> tags)
+        {
+            var output = new List<bool>(tags.Count);
+            for (var i = 0; i < tags.Count; i++)
+            {
+                switch (tags[i].Item2)
                 {
-                    tags++;
-                    valid.Add(currentTags[i]);
+                    case TagType.Normal:
+                        output.Add(RemoveNormalTag(tags[i].Item1));
+                        break;
+
+                    case TagType.Exclusion:
+                        output.Add(RemoveExclusionTag(tags[i].Item1));
+                        break;
+
+                    case TagType.Required:
+                        output.Add(RemoveRequiredTag(tags[i].Item1));
+                        break;
+
+                    default:
+                        throw new Exception("Unsupported tag type!");
                 }
             }
-            return RequiredTagCount > 0 && requiredTags == RequiredTagCount
-                ? valid
-                : tags > 0
-                    ? valid
-                    : new List<Tag>();
+
+            return output;
         }
     }
 }

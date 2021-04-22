@@ -1,10 +1,27 @@
 # Velentr.Audio
 A simple audio library.
 
+# Installation
+There are nuget packages available for Monogame and FNA.
+- Monogame: [Velentr.Audio.Monogame](https://www.nuget.org/packages/Velentr.Audio.Monogame/)
+- FNA: [Velentr.Audio.FNA](https://www.nuget.org/packages/Velentr.Audio.FNA/)
 
-# Licensces
+# Features
+- Auto texture atlas creation: handle loading textures into texture atlases automatically
+  - includes functionality to auto-rebalance texture atlases based on usage and size of textures
+
+# Example Usage
+```
+
+```
+
+
+# Future Plans
+See list of issues under the Milestones: https://github.com/vonderborch/Velentr.Audio/milestones
+
+# License Information
 ### Velentr.Audio
-MIT - 
+MIT - https://github.com/vonderborch/Velentr.Audio/blob/main/LICENSE
 
 ### Dev Environment Music
 _Drums of the Deep_ Kevin MacLeod (incompetech.com)

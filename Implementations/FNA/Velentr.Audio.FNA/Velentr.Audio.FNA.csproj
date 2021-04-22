@@ -28,35 +28,6 @@
     <DefineConstants>TRACE;FNA</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Conditions\**" />
-    <Compile Remove="Enums\**" />
-    <Compile Remove="EventArguments\**" />
-    <Compile Remove="GamePad\**" />
-    <Compile Remove="Helpers\**" />
-    <Compile Remove="Keyboard\**" />
-    <Compile Remove="Mouse\**" />
-    <Compile Remove="Touch\**" />
-    <Compile Remove="Voice\**" />
-    <EmbeddedResource Remove="Conditions\**" />
-    <EmbeddedResource Remove="Enums\**" />
-    <EmbeddedResource Remove="EventArguments\**" />
-    <EmbeddedResource Remove="GamePad\**" />
-    <EmbeddedResource Remove="Helpers\**" />
-    <EmbeddedResource Remove="Keyboard\**" />
-    <EmbeddedResource Remove="Mouse\**" />
-    <EmbeddedResource Remove="Touch\**" />
-    <EmbeddedResource Remove="Voice\**" />
-    <None Remove="Conditions\**" />
-    <None Remove="Enums\**" />
-    <None Remove="EventArguments\**" />
-    <None Remove="GamePad\**" />
-    <None Remove="Helpers\**" />
-    <None Remove="Keyboard\**" />
-    <None Remove="Mouse\**" />
-    <None Remove="Touch\**" />
-    <None Remove="Voice\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="fnalibs" Version="21.3.5" />
     <PackageReference Include="System.Speech" Version="5.0.0" />
     <PackageReference Include="Velentr.Collections" Version="1.0.1" />
@@ -69,5 +40,12 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Categories\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Tagging\" />
+    <Folder Include="Sounds\" />
+    <Folder Include="Playlists\" />
   </ItemGroup>
 </Project>

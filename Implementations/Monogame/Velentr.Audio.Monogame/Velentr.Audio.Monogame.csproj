@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Velentr.Input.Monogame</AssemblyName>
@@ -21,35 +21,6 @@
     <DefineConstants>TRACE;MONOGAME</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Conditions\**" />
-    <Compile Remove="Enums\**" />
-    <Compile Remove="EventArguments\**" />
-    <Compile Remove="GamePad\**" />
-    <Compile Remove="Helpers\**" />
-    <Compile Remove="Keyboard\**" />
-    <Compile Remove="Mouse\**" />
-    <Compile Remove="Touch\**" />
-    <Compile Remove="Voice\**" />
-    <EmbeddedResource Remove="Conditions\**" />
-    <EmbeddedResource Remove="Enums\**" />
-    <EmbeddedResource Remove="EventArguments\**" />
-    <EmbeddedResource Remove="GamePad\**" />
-    <EmbeddedResource Remove="Helpers\**" />
-    <EmbeddedResource Remove="Keyboard\**" />
-    <EmbeddedResource Remove="Mouse\**" />
-    <EmbeddedResource Remove="Touch\**" />
-    <EmbeddedResource Remove="Voice\**" />
-    <None Remove="Conditions\**" />
-    <None Remove="Enums\**" />
-    <None Remove="EventArguments\**" />
-    <None Remove="GamePad\**" />
-    <None Remove="Helpers\**" />
-    <None Remove="Keyboard\**" />
-    <None Remove="Mouse\**" />
-    <None Remove="Touch\**" />
-    <None Remove="Voice\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
@@ -61,5 +32,12 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Categories\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Playlists\" />
+    <Folder Include="Sounds\" />
+    <Folder Include="Tagging\" />
   </ItemGroup>
 </Project>

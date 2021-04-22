@@ -14,8 +14,8 @@
     <None Remove="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Velentr.Input.Core.DevEnv\Game1.cs" Link="Game1.cs" />
-    <Compile Include="..\..\Velentr.Input.Core.DevEnv\Program.cs" Link="Program.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core.DevEnv\Game1.cs" Link="Game1.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core.DevEnv\Program.cs" Link="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
