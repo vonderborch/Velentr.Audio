@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Velentr.Audio.Procedural;
 
-namespace Velentr.Audio.Core.DevEnv
+namespace Velentr.Audio.DevEnv
 {
     public class StandardPiano : Instrument
     {

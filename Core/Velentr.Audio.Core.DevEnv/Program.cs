@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Velentr.Input.DevEnv
+namespace Velentr.Audio.DevEnv
 {
     public static class Program
     {

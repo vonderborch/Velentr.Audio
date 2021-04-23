@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Velentr.Audio.Helpers;
 using Velentr.Audio.Procedural;
 
-namespace Velentr.Audio.Core.DevEnv
+namespace Velentr.Audio.DevEnv
 {
     public class ExampleProceduralSong : ProceduralSong
     {

@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Velentr.Audio;
 using Velentr.Audio.Categoreies;
-using Velentr.Audio.Core.DevEnv;
 using Velentr.Audio.Helpers;
 using Velentr.Audio.Playlists;
-using Velentr.Audio.Procedural;
 using Velentr.Audio.Tagging;
 
-namespace Velentr.Input.DevEnv
+namespace Velentr.Audio.DevEnv
 {
     public class Game1 : Game
     {

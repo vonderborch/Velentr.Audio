@@ -8,6 +8,11 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <PackageId>Velentr.Audio.DevEnv</PackageId>
+    <Authors>Velentr.Audio.DevEnv</Authors>
+    <Product>Velentr.Audio.DevEnv</Product>
+    <AssemblyName>Velentr.Audio.DevEnv</AssemblyName>
+    <RootNamespace>Velentr.Audio.DevEnv</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />

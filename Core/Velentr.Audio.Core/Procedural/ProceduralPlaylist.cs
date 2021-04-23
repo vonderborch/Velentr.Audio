@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Velentr.Audio.Playlists;
-using Velentr.Audio.Sounds;
 using Velentr.Audio.Tagging;
 
 namespace Velentr.Audio.Procedural

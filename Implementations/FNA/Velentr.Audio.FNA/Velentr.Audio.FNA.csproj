@@ -1,19 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Velentr.Input</RootNamespace>
-    <AssemblyName>Velentr.Input.FNA</AssemblyName>
+    <TargetFramework>netstandard20</TargetFramework>
+    <RootNamespace>Velentr.Audio</RootNamespace>
+    <AssemblyName>Velentr.Audio.FNA</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
     <Authors>Christian Webber</Authors>
     <Company>Christian Webber</Company>
-    <RepositoryUrl>https://github.com/vonderborch/Velentr.Input</RepositoryUrl>
-    <PackageTags>FNA, Input, Keyboard, Mouse, GamePad, Touch, Voice</PackageTags>
-    <Description>A simple and easy-to-use input library for XNA/Monogame/FNA.</Description>
-    <Version>1.2.0</Version>
-    <PackageProjectUrl>https://github.com/vonderborch/Velentr.Input</PackageProjectUrl>
-    <PackageLicenseExpression></PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/vonderborch/Velentr.Audio</RepositoryUrl>
+    <PackageTags>FNA, Audio, Procedural Music</PackageTags>
+    <Description>A simple audio library for Monogame/FNA.</Description>
+    <Version>1.0.0</Version>
+    <PackageProjectUrl>https://github.com/vonderborch/Velentr.Audio</PackageProjectUrl>
+    <PackageLicenseExpression>
+    </PackageLicenseExpression>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;FNA</DefineConstants>
@@ -28,22 +29,42 @@
     <DefineConstants>TRACE;FNA</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\AudioManager.cs" Link="AudioManager.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Categoreies\Category.cs" Link="Categories\Category.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Categoreies\CategoryLoadInfo.cs" Link="Categories\CategoryLoadInfo.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Categoreies\MusicCategory.cs" Link="Categories\MusicCategory.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Helpers\IUpdateable.cs" Link="Helpers\IUpdateable.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Helpers\Randomizer.cs" Link="Helpers\Randomizer.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Helpers\SystemRandomizer.cs" Link="Helpers\SystemRandomizer.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Helpers\TimeHelpers.cs" Link="Helpers\TimeHelpers.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Playlists\Playlist.cs" Link="Playlists\Playlist.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Playlists\PlaylistLoadInfo.cs" Link="Playlists\PlaylistLoadInfo.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Playlists\PlaylistMusicInfo.cs" Link="Playlists\PlaylistMusicInfo.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Playlists\PlaylistType.cs" Link="Playlists\PlaylistType.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Procedural\Instrument.cs" Link="Procedural\Instrument.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Procedural\ProceduralPlaylist.cs" Link="Procedural\ProceduralPlaylist.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Procedural\ProceduralSong.cs" Link="Procedural\ProceduralSong.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Sounds\Audio.cs" Link="Sounds\Audio.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Sounds\AudioInstance.cs" Link="Sounds\AudioInstance.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Sounds\Music.cs" Link="Sounds\Music.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Sounds\MusicLoadInfo.cs" Link="Sounds\MusicLoadInfo.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Sounds\Sound.cs" Link="Sounds\Sound.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Sounds\SoundLoadInfo.cs" Link="Sounds\SoundLoadInfo.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Tagging\Tag.cs" Link="Tagging\Tag.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Tagging\TagSet.cs" Link="Tagging\TagSet.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core\Tagging\TagType.cs" Link="Tagging\TagType.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="fnalibs" Version="21.3.5" />
-    <PackageReference Include="System.Speech" Version="5.0.0" />
-    <PackageReference Include="Velentr.Collections" Version="1.0.1" />
+    <PackageReference Include="Velentr.Collections" Version="1.0.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\FNA\FNA.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Categories\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Procedural\" />
     <Folder Include="Tagging\" />
     <Folder Include="Sounds\" />
     <Folder Include="Playlists\" />

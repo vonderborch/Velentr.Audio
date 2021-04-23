@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -22,6 +22,9 @@
   <ItemGroup>
     <Compile Include="..\..\..\Core\Velentr.Audio.Core.DevEnv\Game1.cs" Link="Game1.cs" />
     <Compile Include="..\..\..\Core\Velentr.Audio.Core.DevEnv\Program.cs" Link="Program.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core.DevEnv\ExampleProceduralSong.cs" Link="ExampleProceduralSong.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core.DevEnv\StandardBass.cs" Link="StandardBass.cs" />
+    <Compile Include="..\..\..\Core\Velentr.Audio.Core.DevEnv\StandardPiano.cs" Link="StandardPiano.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PlayfairDisplayRegular-ywLOY.ttf">
@@ -57,5 +60,76 @@
     <Content Update="C:\Users\ricky\.nuget\packages\fnalibs\21.3.5\build\..\lib\x86\SDL2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\Music\Drums-of-the-Deep-153-Loop-Full.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Lord-of-the-Land-130-Full.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Master-of-the-Feast-122-Full.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Suonatore-di-Liuto-Full.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Music\Teller-of-the-Tales-130-Full.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\bass_a2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\bass_b2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\bass_c2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\bass_d2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\bass_e2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\bass_f2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\bass_g2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\elecP_A.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\elecP_B.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\elecP_C.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\elecP_D.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\elecP_E.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\elecP_F.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Procedural\elecP_G.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Sounds\263131__pan14__tone-beep-slower-lower-amb-verb.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Sounds\27568__suonho__memorymoon-space-blaster-plays.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Sounds\33775__jobro__1-beep-a.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Sounds\BEEP1A.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
