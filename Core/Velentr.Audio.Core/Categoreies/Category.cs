@@ -335,7 +335,6 @@ namespace Velentr.Audio.Categoreies
 
                     // create a new instance
                     var newId = Manager.GenerateNewAudioInstance(audio[i].Name, Name, true);
-                    RegisterInstance(newId);
                 }
             }
 

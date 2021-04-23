@@ -6,7 +6,7 @@ namespace Velentr.Audio.Playlists
     /// <summary>
     ///     Represents music in a playlist
     /// </summary>
-    public class PlaylistMusic
+    public class PlaylistMusicInfo
     {
         /// <summary>
         ///     The name.
@@ -24,7 +24,7 @@ namespace Velentr.Audio.Playlists
         ///
         /// <param name="name"> The name. </param>
         /// <param name="tags"> The tags. </param>
-        public PlaylistMusic(string name, TagSet tags)
+        public PlaylistMusicInfo(string name, TagSet tags)
         {
             _name = name.ToUpperInvariant();
             Tags = tags;
@@ -38,7 +38,7 @@ namespace Velentr.Audio.Playlists
         /// <param name="tags">          (Optional) The tags. </param>
         /// <param name="exclusionTags"> (Optional) The exclusion tags. </param>
         /// <param name="requiredTags">  (Optional) The required tags. </param>
-        public PlaylistMusic(string name, List<string> tags = null, List<string> exclusionTags = null, List<string> requiredTags = null)
+        public PlaylistMusicInfo(string name, List<string> tags = null, List<string> exclusionTags = null, List<string> requiredTags = null)
         {
             _name = name.ToUpperInvariant();
             Tags = new TagSet(tags, exclusionTags, requiredTags);

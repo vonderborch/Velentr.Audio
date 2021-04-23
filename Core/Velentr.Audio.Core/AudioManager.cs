@@ -5,6 +5,7 @@ using System.Linq;
 using Velentr.Audio.Categoreies;
 using Velentr.Audio.Helpers;
 using Velentr.Audio.Playlists;
+using Velentr.Audio.Procedural;
 using Velentr.Audio.Sounds;
 using Velentr.Audio.Tagging;
 using Velentr.Collections.CollectionActions;
@@ -298,6 +299,92 @@ namespace Velentr.Audio
         }
 
         /// <summary>
+        ///     Adds a procedural music sample.
+        /// </summary>
+        ///
+        /// <param name="name">         The name. </param>
+        /// <param name="path">         Full pathname of the file. </param>
+        /// <param name="defaultPitch"> The default pitch. </param>
+        /// <param name="autoLoad">     (Optional) True to automatically load. </param>
+        public void AddProceduralMusicSample(string name, string path, float defaultPitch, bool autoLoad = false)
+        {
+            name = name.ToUpperInvariant();
+            _music.Add(name, new Music(this, name, path, defaultPitch, autoLoad));
+        }
+
+        /// <summary>
+        ///     Adds a procedural music sample.
+        /// </summary>
+        ///
+        /// <param name="loadInfo"> Information describing the load. </param>
+        public void AddProceduralMusicSample(MusicLoadInfo loadInfo)
+        {
+            _music.Add(loadInfo.Name, new Music(this, loadInfo.Name, loadInfo.Path, loadInfo.DefaultPitch, loadInfo.AutoLoad));
+        }
+
+        /// <summary>
+        ///     Adds a procedural music sample.
+        /// </summary>
+        ///
+        /// <param name="proceduralMusicSamples"> The procedural music samples. </param>
+        public void AddProceduralMusicSample(List<MusicLoadInfo> proceduralMusicSamples)
+        {
+            for (var i = 0; i < proceduralMusicSamples.Count; i++)
+            {
+                AddProceduralMusicSample(proceduralMusicSamples[i]);
+            }
+        }
+
+        /// <summary>
+        ///     Adds a procedural song.
+        /// </summary>
+        ///
+        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
+        ///
+        /// <param name="playlist"> The playlist. </param>
+        /// <param name="name">     The name. </param>
+        /// <param name="song">     The song. </param>
+        public void AddProceduralSong(string playlist, string name, ProceduralSong song)
+        {
+            playlist = playlist.ToUpperInvariant();
+            name = name.ToUpperInvariant();
+
+            if (MusicCategory._playlists[playlist].PlaylistType == PlaylistType.Normal)
+            {
+                throw new Exception("Invalid playlist type to add a procedural song to!");
+            }
+
+            ((ProceduralPlaylist) MusicCategory._playlists[playlist]).AddProceduralSong(name, song);
+        }
+
+        /// <summary>
+        ///     Adds a procedural song.
+        /// </summary>
+        ///
+        /// <param name="playlist"> The playlist. </param>
+        /// <param name="songs">    The songs. </param>
+        public void AddProceduralSong(string playlist, List<(string, ProceduralSong)> songs)
+        {
+            for (var i = 0; i < songs.Count; i++)
+            {
+                AddProceduralSong(playlist, songs[i].Item1, songs[i].Item2);
+            }
+        }
+
+        /// <summary>
+        ///     Adds a procedural song.
+        /// </summary>
+        ///
+        /// <param name="playlistsAndSongs"> The playlists and songs. </param>
+        public void AddProceduralSong(Dictionary<string, List<(string, ProceduralSong)>> playlistsAndSongs)
+        {
+            foreach (var playlist in playlistsAndSongs)
+            {
+                AddProceduralSong(playlist.Key, playlist.Value);
+            }
+        }
+
+        /// <summary>
         ///     Adds a music tag.
         /// </summary>
         ///
@@ -338,7 +425,7 @@ namespace Velentr.Audio
         /// <param name="tags">     The tags. </param>
         public void AddMusicToPlaylist(string playlist, string name, TagSet tags)
         {
-            AddMusicToPlaylist(playlist, new PlaylistMusic(name, tags));
+            AddMusicToPlaylist(playlist, new PlaylistMusicInfo(name, tags));
         }
 
         /// <summary>
@@ -352,7 +439,7 @@ namespace Velentr.Audio
         /// <param name="requiredTags">  (Optional) The required tags. </param>
         public void AddMusicToPlaylist(string playlist, string name, List<string> tags = null, List<string> exclusionTags = null, List<string> requiredTags = null)
         {
-            AddMusicToPlaylist(playlist, new PlaylistMusic(name, tags, exclusionTags, requiredTags));
+            AddMusicToPlaylist(playlist, new PlaylistMusicInfo(name, tags, exclusionTags, requiredTags));
         }
 
         /// <summary>
@@ -361,7 +448,7 @@ namespace Velentr.Audio
         ///
         /// <param name="playlist">  The playlist. </param>
         /// <param name="trackInfo"> Information describing the track. </param>
-        public void AddMusicToPlaylist(string playlist, PlaylistMusic trackInfo)
+        public void AddMusicToPlaylist(string playlist, PlaylistMusicInfo trackInfo)
         {
             MusicCategory._playlists[playlist].AddPlaylistMusic(trackInfo);
         }
@@ -372,7 +459,7 @@ namespace Velentr.Audio
         ///
         /// <param name="playlist"> The playlist. </param>
         /// <param name="tracks">   The tracks. </param>
-        public void AddMusicToPlaylist(string playlist, List<PlaylistMusic> tracks)
+        public void AddMusicToPlaylist(string playlist, List<PlaylistMusicInfo> tracks)
         {
             for (var i = 0; i < tracks.Count; i++)
             {
@@ -385,7 +472,7 @@ namespace Velentr.Audio
         /// </summary>
         ///
         /// <param name="playlistsAndTracks"> The playlists and tracks. </param>
-        public void AddMusicToPlaylist(Dictionary<string, List<PlaylistMusic>> playlistsAndTracks)
+        public void AddMusicToPlaylist(Dictionary<string, List<PlaylistMusicInfo>> playlistsAndTracks)
         {
             foreach (var playlist in playlistsAndTracks)
             {
@@ -398,9 +485,37 @@ namespace Velentr.Audio
         /// </summary>
         ///
         /// <param name="playlist"> The playlist. </param>
+        public void AddPlaylist(Playlist playlist)
+        {
+            MusicCategory.AddPlaylist(playlist);
+        }
+
+        /// <summary>
+        ///     Adds a playlist.
+        /// </summary>
+        ///
+        /// <param name="playlist"> The playlist. </param>
         public void AddPlaylist(PlaylistLoadInfo playlist)
         {
-            MusicCategory.AddPlaylist(new Playlist(this, playlist.Name, playlist.Randomize, playlist.MaxTriesToAvoidRepeats, playlist.PlaylistValidTags, playlist.PlaylistPauasedTags));
+            Playlist playlistInstance;
+            switch (playlist.PlaylistType)
+            {
+                case PlaylistType.Normal:
+                    playlistInstance = new Playlist(this, playlist.Name, playlist.Randomize, playlist.MaxTriesToAvoidRepeats, playlist.PlaylistValidTags, playlist.PlaylistPauasedTags);
+                    break;
+                case PlaylistType.Procedural:
+                    playlistInstance = new ProceduralPlaylist(this, playlist.Name, playlist.Randomize, playlist.MaxTriesToAvoidRepeats, playlist.PlaylistValidTags, playlist.PlaylistPauasedTags);
+                    break;
+                default:
+                    throw new Exception("Unsupported playlist type!");
+            }
+
+            for (var i = 0; i < playlist.MusicTracks.Count; i++)
+            {
+                playlistInstance.AddPlaylistMusic(playlist.MusicTracks[i]);
+            }
+
+            MusicCategory.AddPlaylist(playlistInstance);
         }
 
         /// <summary>
@@ -421,11 +536,12 @@ namespace Velentr.Audio
         /// </summary>
         ///
         /// <param name="name">                   The name. </param>
+        /// <param name="playlistType">           Type of the playlist. </param>
         /// <param name="randomize">              (Optional) True to randomize. </param>
         /// <param name="maxTriesToAvoidRepeats"> (Optional) The maximum tries to avoid repeats. </param>
-        public void AddPlaylist(string name, bool randomize = true, int maxTriesToAvoidRepeats = 3)
+        public void AddPlaylist(string name, PlaylistType playlistType, bool randomize = true, int maxTriesToAvoidRepeats = 3)
         {
-            AddPlaylist(new PlaylistLoadInfo(name, randomize, maxTriesToAvoidRepeats));
+            AddPlaylist(new PlaylistLoadInfo(name, playlistType, randomize, maxTriesToAvoidRepeats));
         }
 
         /// <summary>
@@ -433,13 +549,14 @@ namespace Velentr.Audio
         /// </summary>
         ///
         /// <param name="name">                   The name. </param>
+        /// <param name="playlistType">           Type of the playlist. </param>
         /// <param name="playlistValidTags">      The playlist valid tags. </param>
         /// <param name="playlistPausedTags">     The playlist paused tags. </param>
         /// <param name="randomize">              (Optional) True to randomize. </param>
         /// <param name="maxTriesToAvoidRepeats"> (Optional) The maximum tries to avoid repeats. </param>
-        public void AddPlaylist(string name, TagSet playlistValidTags, TagSet playlistPausedTags, bool randomize = true, int maxTriesToAvoidRepeats = 3)
+        public void AddPlaylist(string name, PlaylistType playlistType, TagSet playlistValidTags, TagSet playlistPausedTags, bool randomize = true, int maxTriesToAvoidRepeats = 3)
         {
-            AddPlaylist(new PlaylistLoadInfo(name, playlistValidTags, playlistPausedTags, randomize, maxTriesToAvoidRepeats));
+            AddPlaylist(new PlaylistLoadInfo(name, playlistType, playlistValidTags, playlistPausedTags, randomize, maxTriesToAvoidRepeats));
         }
 
         /// <summary>
@@ -447,6 +564,7 @@ namespace Velentr.Audio
         /// </summary>
         ///
         /// <param name="name">                       The name. </param>
+        /// <param name="playlistType">           Type of the playlist. </param>
         /// <param name="validPlaylistTags">          The valid playlist tags. </param>
         /// <param name="validPlaylistExclusionTags"> The valid playlist exclusion tags. </param>
         /// <param name="validPlaylistRequiredTags">  The valid playlist required tags. </param>
@@ -457,9 +575,9 @@ namespace Velentr.Audio
         /// <param name="maxTriesToAvoidRepeats">
         ///     (Optional) The maximum tries to avoid repeats.
         /// </param>
-        public void AddPlaylist(string name, List<string> validPlaylistTags, List<string> validPlaylistExclusionTags, List<string> validPlaylistRequiredTags, List<string> pausePlaylistTags, List<string> pausePlaylistExclusionTags, List<string> pausePlaylistRequiredTags, bool randomize = true, int maxTriesToAvoidRepeats = 3)
+        public void AddPlaylist(string name, PlaylistType playlistType, List<string> validPlaylistTags, List<string> validPlaylistExclusionTags, List<string> validPlaylistRequiredTags, List<string> pausePlaylistTags, List<string> pausePlaylistExclusionTags, List<string> pausePlaylistRequiredTags, bool randomize = true, int maxTriesToAvoidRepeats = 3)
         {
-            AddPlaylist(new PlaylistLoadInfo(name, validPlaylistTags, validPlaylistExclusionTags, validPlaylistRequiredTags, pausePlaylistTags, pausePlaylistExclusionTags, pausePlaylistRequiredTags, randomize, maxTriesToAvoidRepeats));
+            AddPlaylist(new PlaylistLoadInfo(name, playlistType, validPlaylistTags, validPlaylistExclusionTags, validPlaylistRequiredTags, pausePlaylistTags, pausePlaylistExclusionTags, pausePlaylistRequiredTags, randomize, maxTriesToAvoidRepeats));
         }
 
         /// <summary>
@@ -649,15 +767,16 @@ namespace Velentr.Audio
         /// <returns>
         ///     The new audio instance.
         /// </returns>
-        public ulong GenerateNewAudioInstance(string name, string category, bool autoPlay = true)
+        public ulong GenerateNewAudioInstance(string name, string category, bool autoPlay = true, bool throwOnError = true)
         {
+            name = name.ToUpperInvariant();
             category = category.ToUpperInvariant();
 
-            if (category == MUSIC_CATEGORY && !HasFreeMusicInstances)
+            if (category == MUSIC_CATEGORY && !HasFreeMusicInstances && throwOnError)
             {
                 throw new Exception("No free music instances available!");
             }
-            if (category != MUSIC_CATEGORY && !HasFreeSoundInstances)
+            if (category != MUSIC_CATEGORY && !HasFreeSoundInstances && throwOnError)
             {
                 throw new Exception("No free sound instances available!");
             }
@@ -666,7 +785,7 @@ namespace Velentr.Audio
             if (category == MUSIC_CATEGORY)
             {
                 var instance = _music[name].GetInstance();
-                if (instance == null)
+                if (instance == null && throwOnError)
                 {
                     throw new Exception("Failed to create a new music instance!");
                 }
@@ -675,11 +794,12 @@ namespace Velentr.Audio
                 newAudioInstance.UpdateInstance(this, _musicInstanceId++, name, MUSIC_CATEGORY, instance);
                 _currentMusicInstances.Add(newAudioInstance.ID, newAudioInstance);
                 CurrentMusicInstances++;
+                MusicCategory.RegisterInstance(newAudioInstance.ID);
             }
             else
             {
                 var instance = _sounds[name].GetInstance();
-                if (instance == null)
+                if (instance == null && throwOnError)
                 {
                     throw new Exception("Failed to create a new music instance!");
                 }
@@ -688,6 +808,7 @@ namespace Velentr.Audio
                 newAudioInstance.UpdateInstance(this, _soundInstanceId++, name, category, instance);
                 _currentSoundInstances.Add(newAudioInstance.ID, newAudioInstance);
                 CurrentSoundInstances++;
+                _categories[category].RegisterInstance(newAudioInstance.ID);
             }
 
             if (autoPlay)
@@ -920,6 +1041,40 @@ namespace Velentr.Audio
             }
         }
 
+        /// <summary>
+        ///     Removes the procedural music sample described by name.
+        /// </summary>
+        ///
+        /// <param name="name"> The name. </param>
+        public void RemoveProceduralMusicSample(string name)
+        {
+            _music.Remove(name.ToUpperInvariant());
+
+            // stop the music from playing (if it is) and remove it from everywhere it is associated with 1
+            var instances = _currentMusicInstances.Where(x => x.Value.Name == name);
+            var instancesToKill = instances.Select(x => x.Key).ToList();
+            RemoveAudioInstances(instancesToKill, MUSIC_CATEGORY);
+        }
+
+        /// <summary>
+        ///     Removes the procedural music sample described by name.
+        /// </summary>
+        ///
+        /// <param name="names"> The names. </param>
+        public void RemoveProceduralMusicSample(List<string> names)
+        {
+            for (var i = 0; i < names.Count; i++)
+            {
+                RemoveMusic(names[i].ToUpperInvariant());
+            }
+        }
+
+        /// <summary>
+        ///     Removes the music from playlist described by playlistsAndTracks.
+        /// </summary>
+        ///
+        /// <param name="playlist"> The playlist. </param>
+        /// <param name="name">     The name. </param>
         public void RemoveMusicFromPlaylist(string playlist, string name)
         {
             MusicCategory._playlists[playlist.ToUpperInvariant()].RemovePlaylistMusic(name.ToUpperInvariant());
@@ -1072,6 +1227,52 @@ namespace Velentr.Audio
         public List<bool> RemovePlaylistChoiceTag(List<(string, bool)> tags)
         {
             return MusicCategory.RemovePlaylistChoiceTag(tags);
+        }
+
+        /// <summary>
+        ///     Removes the procedural song.
+        /// </summary>
+        ///
+        /// <exception cref="Exception"> Thrown when an exception error condition occurs. </exception>
+        ///
+        /// <param name="playlist"> The playlist. </param>
+        /// <param name="name">     The name. </param>
+        ///
+        /// <returns>
+        ///     True if it succeeds, false if it fails.
+        /// </returns>
+        public bool RemoveProceduralSong(string playlist, string name)
+        {
+            playlist = playlist.ToUpperInvariant();
+            name = name.ToUpperInvariant();
+
+            if (MusicCategory._playlists[playlist].PlaylistType == PlaylistType.Normal)
+            {
+                throw new Exception("Invalid playlist type to add a procedural song to!");
+            }
+
+            return ((ProceduralPlaylist)MusicCategory._playlists[playlist]).RemoveProceduralSong(name);
+        }
+
+        /// <summary>
+        ///     Removes the procedural song.
+        /// </summary>
+        ///
+        /// <param name="playlist"> The playlist. </param>
+        /// <param name="names">    The names. </param>
+        ///
+        /// <returns>
+        ///     True if it succeeds, false if it fails.
+        /// </returns>
+        public List<bool> RemoveProceduralSong(string playlist, List<string> names)
+        {
+            var output = new List<bool>();
+            for (var i = 0; i < names.Count; i++)
+            {
+                output.Add(RemoveProceduralSong(playlist, names[i]));
+            }
+
+            return output;
         }
 
         /// <summary>

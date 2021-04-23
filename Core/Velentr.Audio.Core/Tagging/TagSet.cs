@@ -28,6 +28,20 @@ namespace Velentr.Audio.Tagging
         ///     Constructor.
         /// </summary>
         ///
+        /// <param name="fake"> (Optional) True to fake. </param>
+        public TagSet(bool fake = false)
+        {
+            _tags = new HashSet<string>();
+            _exclusions = new HashSet<string>();
+            _required = new HashSet<string>();
+
+            TotalTagCount = _tags.Count + _exclusions.Count + _required.Count;
+        }
+
+        /// <summary>
+        ///     Constructor.
+        /// </summary>
+        ///
         /// <param name="tags">
         ///     (Optional) The tags. These are effectively 'Any' tags. If any exist in the current set of
         ///     tags associated with the manager, this music is valid.
@@ -41,11 +55,17 @@ namespace Velentr.Audio.Tagging
         ///     (Optional) The required tags. These are effectively 'All' tags. All of these tags need to
         ///     exist in the current set of tags associated with the manager for this music to be valid.
         /// </param>
-        public TagSet(List<string> tags = null, List<string> exclusionTags = null, List<string> requiredTags = null)
+        public TagSet(List<string> tags, List<string> exclusionTags, List<string> requiredTags)
         {
-            _tags = new HashSet<string>(tags ?? new List<string>());
-            _exclusions = new HashSet<string>(exclusionTags ?? new List<string>());
-            _required = new HashSet<string>(requiredTags ?? new List<string>());
+            _tags = tags == null
+                ? new HashSet<string>()
+                : new HashSet<string>(tags);
+            _exclusions = exclusionTags == null
+                ? new HashSet<string>()
+                : new HashSet<string>(tags);
+            _required = requiredTags == null
+                ? new HashSet<string>()
+                : new HashSet<string>(tags);
 
             TotalTagCount = _tags.Count + _exclusions.Count + _required.Count;
         }

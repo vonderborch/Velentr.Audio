@@ -11,7 +11,4 @@
     </PackageReference>
     <PackageReference Include="Velentr.Collections" Version="1.0.5" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Procedural\" />
-  </ItemGroup>
 </Project>

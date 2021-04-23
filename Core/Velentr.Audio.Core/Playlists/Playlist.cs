@@ -18,10 +18,22 @@ namespace Velentr.Audio.Playlists
         /// <summary>
         ///     The music.
         /// </summary>
-        public Dictionary<string, PlaylistMusic> _music;
+        public Dictionary<string, PlaylistMusicInfo> Music;
+
+        /// <summary>
+        ///     The playlist paused tags.
+        /// </summary>
         public TagSet PlaylistPausedTags;
+
+        /// <summary>
+        ///     The playlist valid tags.
+        /// </summary>
         public TagSet PlaylistValidTags;
-        private string _currentMusicName;
+
+        /// <summary>
+        ///     The current music name.
+        /// </summary>
+        protected string _currentMusicName;
 
         /// <summary>
         ///     Constructor.
@@ -43,8 +55,9 @@ namespace Velentr.Audio.Playlists
             _currentMusicName = string.Empty;
             PlaylistValidTags = playlistValidTags ?? new TagSet();
             PlaylistPausedTags = playlistPausedTags ?? new TagSet();
-            _music = new Dictionary<string, PlaylistMusic>();
+            Music = new Dictionary<string, PlaylistMusicInfo>();
             IsPaused = false;
+            PlaylistType = PlaylistType.Normal;
         }
 
         /// <summary>
@@ -93,6 +106,15 @@ namespace Velentr.Audio.Playlists
         public bool Randomize { get; set; }
 
         /// <summary>
+        ///     Gets or sets the type of the playlist.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The type of the playlist.
+        /// </value>
+        public PlaylistType PlaylistType { get; protected set; }
+
+        /// <summary>
         ///     Adds a playlist music to 'tags'.
         /// </summary>
         ///
@@ -100,7 +122,7 @@ namespace Velentr.Audio.Playlists
         /// <param name="tags"> The tags. </param>
         public void AddPlaylistMusic(string name, TagSet tags)
         {
-            AddPlaylistMusic(new PlaylistMusic(name, tags));
+            AddPlaylistMusic(new PlaylistMusicInfo(name, tags));
         }
 
         /// <summary>
@@ -113,7 +135,7 @@ namespace Velentr.Audio.Playlists
         /// <param name="requiredTags">  (Optional) The required tags. </param>
         public void AddPlaylistMusic(string name, List<string> tags = null, List<string> exclusionTags = null, List<string> requiredTags = null)
         {
-            AddPlaylistMusic(new PlaylistMusic(name, tags, exclusionTags, requiredTags));
+            AddPlaylistMusic(new PlaylistMusicInfo(name, tags, exclusionTags, requiredTags));
         }
 
         /// <summary>
@@ -121,9 +143,9 @@ namespace Velentr.Audio.Playlists
         /// </summary>
         ///
         /// <param name="music"> The music. </param>
-        public void AddPlaylistMusic(PlaylistMusic music)
+        public void AddPlaylistMusic(PlaylistMusicInfo music)
         {
-            _music.Add(music.Name, music);
+            Music.Add(music.Name, music);
         }
 
         /// <summary>
@@ -193,7 +215,7 @@ namespace Velentr.Audio.Playlists
         /// <summary>
         ///     Pauses this object.
         /// </summary>
-        public void Pause()
+        public virtual void Pause()
         {
             var instances = Manager.GetAudioInstances(Manager.MusicCategory.GetPlaylistAudioInstances(Name), true);
             for (var i = 0; i < instances.Count; i++)
@@ -215,7 +237,7 @@ namespace Velentr.Audio.Playlists
         /// </returns>
         public bool RemovePlaylistMusic(string name)
         {
-            return _music.Remove(name);
+            return Music.Remove(name);
         }
 
         /// <summary>
@@ -351,7 +373,7 @@ namespace Velentr.Audio.Playlists
         /// <summary>
         ///     Stops this object.
         /// </summary>
-        public void Stop()
+        public virtual void Stop()
         {
             var instances = Manager.GetAudioInstances(Manager.MusicCategory.GetPlaylistAudioInstances(Name), true);
             for (var i = 0; i < instances.Count; i++)
@@ -398,7 +420,7 @@ namespace Velentr.Audio.Playlists
             if (newMusic)
             {
                 var categoryTags = Manager.MusicCategory.GetCurrentTags();
-                var associatedMusic = Manager.GetPlaylistMusic(_music.Keys.ToList());
+                var associatedMusic = Manager.GetPlaylistMusic(Music.Keys.ToList());
                 if (associatedMusic.Count == 0)
                 {
                     _currentMusicName = string.Empty;
@@ -408,7 +430,7 @@ namespace Velentr.Audio.Playlists
                     var validMusic = new List<(Music, List<Tag>)>();
                     for (var i = 0; i < associatedMusic.Count; i++)
                     {
-                        if (_music[associatedMusic[i].Name].Tags.IsValid(Manager.MusicCategory.GetCurrentTags(), out var validTags))
+                        if (Music[associatedMusic[i].Name].Tags.IsValid(categoryTags, out var validTags))
                         {
                             validMusic.Add((associatedMusic[i], validTags));
                         }
@@ -421,8 +443,7 @@ namespace Velentr.Audio.Playlists
                     else if (validMusic.Count == 1)
                     {
                         _currentMusicName = associatedMusic[0].Name;
-                        var id = Manager.GenerateNewAudioInstance(_currentMusicName, AudioManager.MUSIC_CATEGORY, true);
-                        Manager.MusicCategory.RegisterInstance(id);
+                        Manager.GenerateNewAudioInstance(_currentMusicName, AudioManager.MUSIC_CATEGORY, true);
                     }
                     else
                     {
@@ -456,8 +477,7 @@ namespace Velentr.Audio.Playlists
                             }
                         }
                         _currentMusicName = associatedMusic[itemId].Name;
-                        var id = Manager.GenerateNewAudioInstance(associatedMusic[itemId].Name, AudioManager.MUSIC_CATEGORY);
-                        Manager.MusicCategory.RegisterInstance(id);
+                        Manager.GenerateNewAudioInstance(associatedMusic[itemId].Name, AudioManager.MUSIC_CATEGORY);
                     }
                 }
             }

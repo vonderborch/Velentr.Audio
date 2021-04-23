@@ -137,7 +137,7 @@
         /// </returns>
         public long GetNextRandomLong()
         {
-            return GetNextRandomLong(long.MinValue, long.MaxValue, false);
+            return GetNextRandomLong(long.MinValue, long.MaxValue, true);
         }
 
         /// <summary>
