@@ -1,20 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard20</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Velentr.Audio</RootNamespace>
-    <AssemblyName>Velentr.Audio.FNA</AssemblyName>
+    <AssemblyName>Velentr.Audio.Monogame</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseFile></PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Christian Webber</Authors>
     <Company>Christian Webber</Company>
     <RepositoryUrl>https://github.com/vonderborch/Velentr.Audio</RepositoryUrl>
     <PackageTags>Monogame, Audio, Procedural Music</PackageTags>
     <Description>A simple audio library for Monogame/FNA.</Description>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <PackageProjectUrl>https://github.com/vonderborch/Velentr.Audio</PackageProjectUrl>
-    <PackageLicenseExpression>
-    </PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
     <PackageId>Velentr.Audio.Monogame</PackageId>
     <Product>Velentr.Audio.Monogame</Product>
   </PropertyGroup>
@@ -63,5 +62,11 @@
     <Folder Include="Playlists\" />
     <Folder Include="Sounds\" />
     <Folder Include="Tagging\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

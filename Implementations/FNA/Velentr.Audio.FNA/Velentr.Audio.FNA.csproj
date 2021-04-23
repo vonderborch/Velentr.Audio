@@ -5,16 +5,15 @@
     <AssemblyName>Velentr.Audio.FNA</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseFile></PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Christian Webber</Authors>
     <Company>Christian Webber</Company>
     <RepositoryUrl>https://github.com/vonderborch/Velentr.Audio</RepositoryUrl>
     <PackageTags>FNA, Audio, Procedural Music</PackageTags>
     <Description>A simple audio library for Monogame/FNA.</Description>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <PackageProjectUrl>https://github.com/vonderborch/Velentr.Audio</PackageProjectUrl>
-    <PackageLicenseExpression>
-    </PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;FNA</DefineConstants>
@@ -68,5 +67,11 @@
     <Folder Include="Tagging\" />
     <Folder Include="Sounds\" />
     <Folder Include="Playlists\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
