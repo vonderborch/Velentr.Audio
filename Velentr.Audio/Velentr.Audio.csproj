@@ -5,10 +5,11 @@
     <Authors>Christian Webber</Authors>
     <Company>Christian Webber</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <RepositoryUrl></RepositoryUrl>
+    <RepositoryUrl>https://github.com/vonderborch/Velentr.Audio</RepositoryUrl>
     <PackageTags></PackageTags>
     <Description></Description>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
+    <PackageProjectUrl>https://github.com/vonderborch/Velentr.Audio</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">

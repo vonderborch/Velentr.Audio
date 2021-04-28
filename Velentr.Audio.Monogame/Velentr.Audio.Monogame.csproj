@@ -5,10 +5,11 @@
     <Authors>Christian Webber</Authors>
     <Company>Christian Webber</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <RepositoryUrl></RepositoryUrl>
-    <PackageTags></PackageTags>
-    <Description></Description>
-    <Version>1.0.2</Version>
+    <RepositoryUrl>https://github.com/vonderborch/Velentr.Audio</RepositoryUrl>
+    <PackageTags>Monogame, Audio, Procedural Music</PackageTags>
+    <Description>A simple audio library for Monogame/FNA.</Description>
+    <Version>1.0.3</Version>
+    <PackageProjectUrl>https://github.com/vonderborch/Velentr.Audio</PackageProjectUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;MONOGAME</DefineConstants>
