@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>290405f0-7ebd-4f25-b71d-39c1ce211c05</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Velentr.Audio</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AudioManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Categories\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Categories\CategoryLoadInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Categories\MusicCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\IUpdateable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Randomizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SystemRandomizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\TimeHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Playlists\Playlist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Playlists\PlaylistLoadInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Playlists\PlaylistMusicInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Playlists\PlaylistType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Procedural\Instrument.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Procedural\ProceduralPlaylist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Procedural\ProceduralSong.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\Audio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\AudioInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\Music.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\MusicLoadInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\Sound.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundLoadInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tagging\Tag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tagging\TagSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tagging\TagType.cs" />
+  </ItemGroup>
+</Project>

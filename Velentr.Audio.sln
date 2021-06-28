@@ -17,10 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FNA", "FNA", "{7ECCDD6B-0BD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monogame", "Monogame", "{029A39A4-E4C3-4B30-9B94-341D5EE04F8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Audio", "Velentr.Audio\Velentr.Audio.csproj", "{15B82E7D-A310-4A1B-8382-62B7BA85654F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Audio.DevEnv", "Velentr.Audio.DevEnv\Velentr.Audio.DevEnv.csproj", "{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Audio.FNA", "Velentr.Audio.FNA\Velentr.Audio.FNA.csproj", "{EA253E8E-70DB-4AAC-8D75-51213FC73AEA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Audio.FNA.DevEnv", "Velentr.Audio.FNA.DevEnv\Velentr.Audio.FNA.DevEnv.csproj", "{042A170B-A964-4B0E-BEE7-A1F638FE9A36}"
@@ -31,7 +27,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Audio.Monogame.DevE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA", "FNA\FNA.csproj", "{35253CE1-C864-4CD3-8249-4D1319748E8F}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Velentr.Audio", "Velentr.Audio\Velentr.Audio.shproj", "{290405F0-7EBD-4F25-B71D-39C1CE211C05}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Velentr.Audio.DevEnv", "Velentr.Audio.DevEnv\Velentr.Audio.DevEnv.shproj", "{F3B2A435-8E28-4939-A924-165C890EC1FE}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Velentr.Audio\Velentr.Audio.projitems*{290405f0-7ebd-4f25-b71d-39c1ce211c05}*SharedItemsImports = 13
+		Velentr.Audio\Velentr.Audio.projitems*{8edefb78-6a82-4ddf-b919-87f7e590c228}*SharedItemsImports = 5
+		Velentr.Audio\Velentr.Audio.projitems*{ea253e8e-70db-4aac-8d75-51213fc73aea}*SharedItemsImports = 5
+		Velentr.Audio.DevEnv\Velentr.Audio.DevEnv.projitems*{f3b2a435-8e28-4939-a924-165c890ec1fe}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -41,30 +47,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Debug|x64.Build.0 = Debug|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Debug|x86.Build.0 = Debug|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Release|x64.ActiveCfg = Release|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Release|x64.Build.0 = Release|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Release|x86.ActiveCfg = Release|Any CPU
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F}.Release|x86.Build.0 = Release|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Debug|x64.Build.0 = Debug|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Debug|x86.Build.0 = Debug|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Release|x64.ActiveCfg = Release|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Release|x64.Build.0 = Release|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Release|x86.ActiveCfg = Release|Any CPU
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1}.Release|x86.Build.0 = Release|Any CPU
 		{EA253E8E-70DB-4AAC-8D75-51213FC73AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA253E8E-70DB-4AAC-8D75-51213FC73AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA253E8E-70DB-4AAC-8D75-51213FC73AEA}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -130,13 +112,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{15B82E7D-A310-4A1B-8382-62B7BA85654F} = {54E69C51-CFC5-4668-BE72-425EED6E679F}
-		{6F3DDB4F-DF08-42B8-9926-27E59C6AA7E1} = {54E69C51-CFC5-4668-BE72-425EED6E679F}
 		{EA253E8E-70DB-4AAC-8D75-51213FC73AEA} = {7ECCDD6B-0BD9-4B23-91DF-C677D87ED004}
 		{042A170B-A964-4B0E-BEE7-A1F638FE9A36} = {7ECCDD6B-0BD9-4B23-91DF-C677D87ED004}
 		{8EDEFB78-6A82-4DDF-B919-87F7E590C228} = {029A39A4-E4C3-4B30-9B94-341D5EE04F8D}
 		{9414E10E-1B67-42FA-9036-0E126B2F696D} = {029A39A4-E4C3-4B30-9B94-341D5EE04F8D}
 		{35253CE1-C864-4CD3-8249-4D1319748E8F} = {7ECCDD6B-0BD9-4B23-91DF-C677D87ED004}
+		{290405F0-7EBD-4F25-B71D-39C1CE211C05} = {54E69C51-CFC5-4668-BE72-425EED6E679F}
+		{F3B2A435-8E28-4939-A924-165C890EC1FE} = {54E69C51-CFC5-4668-BE72-425EED6E679F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EF08031-0858-4824-88B8-11B63A46B77C}
